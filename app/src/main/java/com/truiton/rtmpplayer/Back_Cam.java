@@ -117,14 +117,12 @@ public class Back_Cam extends AppCompatActivity  {
     public boolean onTouchEvent(MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             final ImageButton button1= (ImageButton) findViewById(R.id.refresh);
-            final ImageButton button2=(ImageButton)findViewById(R.id.settings);
             final ImageButton button3=(ImageButton)findViewById(R.id.cameraswitch);
             final TextView textView=(TextView) findViewById(R.id.frontCam);
             final TextView textView1=(TextView) findViewById(R.id.etName_SL);
             final TextView textView2=(TextView) findViewById(R.id.clock);
 
             button1.setVisibility(View.INVISIBLE);
-            button2.setVisibility(View.INVISIBLE);
             button3.setVisibility(View.INVISIBLE);
             textView.setVisibility(View.INVISIBLE);
             textView1.setVisibility(View.INVISIBLE);
@@ -133,14 +131,12 @@ public class Back_Cam extends AppCompatActivity  {
         }
         else if(event.getAction() == MotionEvent.ACTION_UP) {
             final ImageButton button1= (ImageButton) findViewById(R.id.refresh);
-            final ImageButton button2=(ImageButton)findViewById(R.id.settings);
             final ImageButton button3=(ImageButton)findViewById(R.id.cameraswitch);
             final TextView textView=(TextView) findViewById(R.id.frontCam);
             final TextView textView1=(TextView) findViewById(R.id.etName_SL);
             final TextView textView2=(TextView) findViewById(R.id.clock);
 
             button1.setVisibility(View.VISIBLE);
-            button2.setVisibility(View.VISIBLE);
             button3.setVisibility(View.VISIBLE);
             textView.setVisibility(View.VISIBLE);
             textView1.setVisibility(View.VISIBLE);
@@ -172,7 +168,7 @@ public class Back_Cam extends AppCompatActivity  {
     //to disable the baclbutton on device
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(this,Front_Cam.class);
+        Intent intent = new Intent(this,MainActivity.class);
         startActivity(intent);
 
         System.exit(0);
@@ -242,7 +238,7 @@ public class Back_Cam extends AppCompatActivity  {
 
 
     public void buttonClick(View view) {
-        Intent intent =new Intent(Back_Cam.this,Front_Cam.class);
+        Intent intent =new Intent(Back_Cam.this,Back_Cam.class);
         startActivity(intent);
         System.exit(0);
     }
