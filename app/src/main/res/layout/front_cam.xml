@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/main"
-    tools:context=".Front_Cam"
+    tools:context=".Remote_Front_Cam"
     android:interpolator="@android:anim/accelerate_interpolator"
     android:fromAlpha="0.0"
     android:toAlpha="1.0"

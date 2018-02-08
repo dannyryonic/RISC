@@ -54,7 +54,7 @@ public class Ip_Dialog extends AppCompatDialogFragment {
                       String name = mName.getText().toString();
                       mEditor.putString(getString(R.string.name), name);
                       mEditor.commit();
-                      Intent intent = new Intent(Ip_Dialog.this.getActivity(),Front_Cam.class);
+                      Intent intent = new Intent(Ip_Dialog.this.getActivity(),Remote_Front_Cam.class);
                       startActivity(intent);
                       System.exit(0);
                   }

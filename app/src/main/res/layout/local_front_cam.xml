@@ -1,41 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.SwipeRefreshLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-
-    android:id="@+id/swipeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.truiton.rtmpplayer.Local_Front_Cam"
->
+    android:id="@+id/main"
+    tools:context=".Remote_Front_Cam"
+    android:interpolator="@android:anim/accelerate_interpolator"
+    android:fromAlpha="0.0"
+    android:toAlpha="1.0"
+    android:duration="2000">
 
 
-
-    <RelativeLayout android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <SurfaceView
+    <SurfaceView
         android:id="@+id/surfaceView"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"  />
 
 
     <TextView
+        android:layout_width="wrap_content"
+        android:id="@+id/clock"
+        android:textColor="@android:color/white"
+        android:layout_height="wrap_content"
+        android:text="updating time ..."
+        android:layout_marginTop="0.85dp"/>
+    <TextView
         android:id="@+id/frontCam"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Front Camera"
-        android:textColor="@android:color/holo_red_dark"
-        android:layout_alignParentRight="true"></TextView>
-
+        android:textColor="@android:color/white"
+        android:visibility="visible"
+        android:layout_marginTop="20dp"></TextView>
     <TextView
-        android:id="@+id/backCam"
+        android:id="@+id/etName_SL"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="39.8dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Back Camera"
-        android:textColor="@android:color/holo_red_dark"
-        android:layout_alignParentRight="true"></TextView>
+        android:visibility="visible"
+        android:layout_alignParentLeft="true"></TextView>
+
+
+
+
+
 
     <ImageButton
         android:id="@+id/refresh"
@@ -43,16 +53,16 @@
         android:layout_height="50dp"
         android:onClick="refresh"
         android:background="@drawable/refresh"
-        android:layout_marginTop="65dp"
         android:foreground="?attr/selectableItemBackgroundBorderless"
         android:layout_alignParentRight="true"
         android:visibility="visible"
         />
+
     <ImageButton
         android:id="@+id/cameraswitch"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginTop="110dp"
+        android:layout_marginTop="45dp"
         android:layout_marginRight="5dp"
         android:onClick="buttonClick"
         android:background="@drawable/cameralens"
@@ -60,5 +70,8 @@
         android:foreground="?attr/selectableItemBackgroundBorderless"
 
         />
-    </RelativeLayout>
-</android.support.v4.widget.SwipeRefreshLayout>
+
+
+
+
+</RelativeLayout>

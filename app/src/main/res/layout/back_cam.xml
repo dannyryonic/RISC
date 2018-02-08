@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Back_Cam"
+    tools:context=".Remote_Back_Cam"
     android:interpolator="@android:anim/accelerate_interpolator"
     android:fromAlpha="0.0"
     android:toAlpha="1.0"
@@ -16,8 +16,6 @@
         android:id="@+id/surfaceView"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"  />
-
-
     <TextView
         android:layout_width="wrap_content"
         android:id="@+id/clock"

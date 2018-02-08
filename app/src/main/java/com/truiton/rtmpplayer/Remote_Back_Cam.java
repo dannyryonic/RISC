@@ -3,30 +3,18 @@ package com.truiton.rtmpplayer;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
 import android.graphics.Color;
 import android.net.Uri;
 import android.net.wifi.WifiManager;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
-import android.os.Handler;
 import android.preference.PreferenceManager;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
-import android.view.ViewGroup.LayoutParams;
-import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,16 +23,12 @@ import org.videolan.libvlc.LibVLC;
 import org.videolan.libvlc.Media;
 import org.videolan.libvlc.MediaPlayer;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.lang.ref.WeakReference;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 
 
-public class Front_Cam extends AppCompatActivity  {
+public class Remote_Back_Cam extends AppCompatActivity  {
     private String mFilePath;
     private SurfaceView mSurface;
     private SurfaceHolder holder;
@@ -60,7 +44,7 @@ public class Front_Cam extends AppCompatActivity  {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.front_cam);
+        setContentView(R.layout.back_cam);
         wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
 
         mName = (TextView) findViewById(R.id.etName_SL);
@@ -70,11 +54,11 @@ public class Front_Cam extends AppCompatActivity  {
         mName.setBackgroundColor(Color.parseColor("#50000000"));
         frontCam.setBackgroundColor(Color.parseColor("#50000000"));
 //retieve the text input from then IpPreferance class to the front_cam class
-         SharedPreferences prefs= PreferenceManager.getDefaultSharedPreferences(this);
-         mFilePath = "rtsp://"+prefs.getString(getString(R.string.name), "")+":8090/front";
-         // free rtssp stream 184.72.239.149/vod/mp4:BigBuckBunny_175k.mov");
+        SharedPreferences prefs= PreferenceManager.getDefaultSharedPreferences(this);
+        mFilePath = "rtsp://"+prefs.getString(getString(R.string.name), "")+":8090/back";
+        // free rtssp stream 184.72.239.149/vod/mp4:BigBuckBunny_175k.mov");
 //pass the font IP address to the left of the screen
-         mName = (TextView) findViewById(R.id.etName_SL);
+        mName = (TextView) findViewById(R.id.etName_SL);
         SharedPreferences mPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         String name = "IP: "+ mPreferences.getString(getString(R.string.name), "");
         mName.setText(name);
@@ -108,7 +92,7 @@ public class Front_Cam extends AppCompatActivity  {
             }
         };
         t.start();
-         }
+    }
 
 
 
@@ -117,14 +101,12 @@ public class Front_Cam extends AppCompatActivity  {
     public boolean onTouchEvent(MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             final ImageButton button1= (ImageButton) findViewById(R.id.refresh);
-            final ImageButton button2=(ImageButton)findViewById(R.id.settings);
             final ImageButton button3=(ImageButton)findViewById(R.id.cameraswitch);
             final TextView textView=(TextView) findViewById(R.id.frontCam);
             final TextView textView1=(TextView) findViewById(R.id.etName_SL);
             final TextView textView2=(TextView) findViewById(R.id.clock);
 
             button1.setVisibility(View.INVISIBLE);
-            button2.setVisibility(View.INVISIBLE);
             button3.setVisibility(View.INVISIBLE);
             textView.setVisibility(View.INVISIBLE);
             textView1.setVisibility(View.INVISIBLE);
@@ -133,14 +115,12 @@ public class Front_Cam extends AppCompatActivity  {
         }
         else if(event.getAction() == MotionEvent.ACTION_UP) {
             final ImageButton button1= (ImageButton) findViewById(R.id.refresh);
-            final ImageButton button2=(ImageButton)findViewById(R.id.settings);
             final ImageButton button3=(ImageButton)findViewById(R.id.cameraswitch);
             final TextView textView=(TextView) findViewById(R.id.frontCam);
             final TextView textView1=(TextView) findViewById(R.id.etName_SL);
             final TextView textView2=(TextView) findViewById(R.id.clock);
 
             button1.setVisibility(View.VISIBLE);
-            button2.setVisibility(View.VISIBLE);
             button3.setVisibility(View.VISIBLE);
             textView.setVisibility(View.VISIBLE);
             textView1.setVisibility(View.VISIBLE);
@@ -169,14 +149,14 @@ public class Front_Cam extends AppCompatActivity  {
         super.onDestroy();
         releasePlayer();
     }
-//to disable the baclbutton on device
-@Override
-public void onBackPressed() {
-    Intent intent = new Intent(this,MainActivity.class);
-    startActivity(intent);
+    //to disable the baclbutton on device
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this,Remote_Front_Cam.class);
+        startActivity(intent);
 
-    System.exit(0);
-}
+        System.exit(0);
+    }
 
     private void createPlayer(String media) {
         releasePlayer();
@@ -242,7 +222,7 @@ public void onBackPressed() {
 
 
     public void buttonClick(View view) {
-        Intent intent =new Intent(Front_Cam.this,Back_Cam.class);
+        Intent intent =new Intent(Remote_Back_Cam.this,Remote_Back_Cam.class);
         startActivity(intent);
         System.exit(0);
     }
@@ -270,15 +250,15 @@ public void onBackPressed() {
 
 
     private static class MyPlayerListener implements MediaPlayer.EventListener {
-        private WeakReference<Front_Cam> mOwner;
+        private WeakReference<Remote_Back_Cam> mOwner;
 
-        public MyPlayerListener(Front_Cam owner) {
-            mOwner = new WeakReference<Front_Cam>(owner);
+        public MyPlayerListener(Remote_Back_Cam owner) {
+            mOwner = new WeakReference<Remote_Back_Cam>(owner);
         }
 
         @Override
         public void onEvent(MediaPlayer.Event event) {
-            Front_Cam player = mOwner.get();
+            Remote_Back_Cam player = mOwner.get();
 
             switch (event.type) {
                 case MediaPlayer.Event.EndReached:

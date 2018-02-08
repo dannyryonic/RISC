@@ -3,29 +3,18 @@ package com.truiton.rtmpplayer;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
+import android.graphics.Color;
 import android.net.Uri;
 import android.net.wifi.WifiManager;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
-import android.os.Handler;
 import android.preference.PreferenceManager;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
-import android.view.ViewGroup.LayoutParams;
-import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,10 +23,8 @@ import org.videolan.libvlc.LibVLC;
 import org.videolan.libvlc.Media;
 import org.videolan.libvlc.MediaPlayer;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.lang.ref.WeakReference;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 
@@ -50,20 +37,58 @@ public class Local_Back_Cam extends AppCompatActivity  {
     private int mVideoWidth;
     private int mVideoHeight;
     WifiManager wifiManager;
+
+
+    private TextView mName;
+    private TextView frontCam;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.local_front_cam);
+        setContentView(R.layout.local_back_cam);
         wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-        wifiManager.setWifiEnabled(true);
+
+        mName = (TextView) findViewById(R.id.etName_SL);
+        frontCam=(TextView) findViewById(R.id.frontCam);
+        frontCam.setBackgroundColor(Color.BLACK);
+        mName.setBackgroundColor(Color.BLACK);
+        mName.setBackgroundColor(Color.parseColor("#50000000"));
+        frontCam.setBackgroundColor(Color.parseColor("#50000000"));
+//retieve the text input from then IpPreferance class to the front_cam class
+        SharedPreferences prefs= PreferenceManager.getDefaultSharedPreferences(this);
+       // mFilePath = "rtsp://10.26.1.2";
+        // free rtssp stream 184.72.239.149/vod/mp4:BigBuckBunny_175k.mov");
         mFilePath ="rtsp://10.26.1.3:554/user=admin&password=&channel=1&stream=0.sdp";
-        //rtsp://184.72.239.149/vod/mp4:BigBuckBunny_175k.mov
+
+
+
+        rtsp://184.72.239.149/vod/mp4:BigBuckBunny_175k.mov
         mSurface = (SurfaceView) findViewById(R.id.surfaceView);
         holder = mSurface.getHolder();
 
-        final TextView textView1=(TextView) findViewById(R.id.frontCam);
-        textView1.setVisibility(View.INVISIBLE);
-
+        Thread t = new Thread() {
+            @Override
+            public void run() {
+                try {
+                    while (!isInterrupted()) {
+                        Thread.sleep(1000);
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                TextView tdate = (TextView) findViewById(R.id.clock);
+                                tdate.setBackgroundColor(Color.BLACK);
+                                tdate.setBackgroundColor(Color.parseColor("#50000000"));
+                                long date = System.currentTimeMillis();
+                                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                                String dateString = sdf.format(date);
+                                tdate.setText(dateString);
+                            }
+                        });
+                    }
+                } catch (InterruptedException e) {
+                }
+            }
+        };
+        t.start();
     }
 
 
@@ -75,25 +100,24 @@ public class Local_Back_Cam extends AppCompatActivity  {
             final ImageButton button1= (ImageButton) findViewById(R.id.refresh);
             final ImageButton button3=(ImageButton)findViewById(R.id.cameraswitch);
             final TextView textView=(TextView) findViewById(R.id.frontCam);
-            final TextView textView1=(TextView) findViewById(R.id.backCam);
-
+            final TextView textView2=(TextView) findViewById(R.id.clock);
 
             button1.setVisibility(View.INVISIBLE);
             button3.setVisibility(View.INVISIBLE);
             textView.setVisibility(View.INVISIBLE);
-            textView1.setVisibility(View.INVISIBLE);
+            textView2.setVisibility(View.INVISIBLE);
             return true;
         }
         else if(event.getAction() == MotionEvent.ACTION_UP) {
             final ImageButton button1= (ImageButton) findViewById(R.id.refresh);
             final ImageButton button3=(ImageButton)findViewById(R.id.cameraswitch);
             final TextView textView=(TextView) findViewById(R.id.frontCam);
-            final TextView textView1=(TextView) findViewById(R.id.backCam);
+            final TextView textView2=(TextView) findViewById(R.id.clock);
 
             button1.setVisibility(View.VISIBLE);
             button3.setVisibility(View.VISIBLE);
             textView.setVisibility(View.VISIBLE);
-            textView1.setVisibility(View.VISIBLE);
+            textView2.setVisibility(View.VISIBLE);
             return true;
         }
         return super.onTouchEvent(event);
@@ -204,7 +228,18 @@ public class Local_Back_Cam extends AppCompatActivity  {
         overridePendingTransition( 0, 0);
         System.exit(1);
     }
+    // this starts the INTERNET / REMOTE  side of the app
+    public void settings_onClick(View view) {
+        // Intent intent = new Intent(this,IpPreference.class);
+        //startActivity(intent);
+        openDialog();
+    }
 
+    private void openDialog() {
+        Ip_Dialog  ip_dialog= new Ip_Dialog();
+        ip_dialog.show(getSupportFragmentManager(),"IP address ");
+
+    }
 
 
     private static class MyPlayerListener implements MediaPlayer.EventListener {
