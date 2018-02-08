@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:id="@+id/swipeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.truiton.rtmpplayer.Local_Front_Cam"
+>
+
+
+
+    <RelativeLayout android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <SurfaceView
+        android:id="@+id/surfaceView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"  />
+
+
+    <TextView
+        android:id="@+id/frontCam"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Front Camera"
+        android:textColor="@android:color/holo_red_dark"
+        android:layout_alignParentRight="true"></TextView>
+
+    <TextView
+        android:id="@+id/backCam"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Back Camera"
+        android:textColor="@android:color/holo_red_dark"
+        android:layout_alignParentRight="true"></TextView>
+
+    <ImageButton
+        android:id="@+id/refresh"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:onClick="refresh"
+        android:background="@drawable/refresh"
+        android:layout_marginTop="65dp"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
+        android:layout_alignParentRight="true"
+        android:visibility="visible"
+        />
+    <ImageButton
+        android:id="@+id/cameraswitch"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="110dp"
+        android:layout_marginRight="5dp"
+        android:onClick="buttonClick"
+        android:background="@drawable/cameralens"
+        android:layout_alignParentRight="true"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
+
+        />
+    </RelativeLayout>
+</android.support.v4.widget.SwipeRefreshLayout>

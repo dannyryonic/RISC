@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Back_Cam"
+    android:interpolator="@android:anim/accelerate_interpolator"
+    android:fromAlpha="0.0"
+    android:toAlpha="1.0"
+    android:duration="2000">
+
+
+
+    <SurfaceView
+        android:id="@+id/surfaceView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"  />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:id="@+id/clock"
+        android:textColor="@android:color/white"
+        android:layout_height="wrap_content"
+        android:text="updating time ..."
+        android:layout_marginTop="0.85dp"/>
+    <TextView
+        android:id="@+id/frontCam"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Back Camera"
+        android:textColor="@android:color/white"
+        android:visibility="visible"
+        android:layout_marginTop="20dp"></TextView>
+    <TextView
+        android:id="@+id/etName_SL"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="39.8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        android:layout_alignParentLeft="true"></TextView>
+
+
+
+
+
+
+    <ImageButton
+        android:id="@+id/refresh"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:onClick="refresh"
+        android:background="@drawable/refresh"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
+        android:layout_alignParentRight="true"
+        android:visibility="visible"
+        />
+
+
+    <ImageButton
+        android:id="@+id/cameraswitch"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginRight="5dp"
+        android:onClick="buttonClick"
+        android:background="@drawable/cameralens"
+        android:layout_alignParentRight="true"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
+
+        />
+
+
+
+    <Button
+        android:id="@+id/takeScreenshot"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/refresh"
+        android:layout_marginTop="178dp"
+        />
+</RelativeLayout>
