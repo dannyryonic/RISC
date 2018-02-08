@@ -64,7 +64,7 @@ public class Remote_Front_Cam extends AppCompatActivity  {
         mName.setText(name);
 
 
-        rtsp://184.72.239.149/vod/mp4:BigBuckBunny_175k.mov
+        //rtsp://184.72.239.149/vod/mp4:BigBuckBunny_175k.mov
         mSurface = (SurfaceView) findViewById(R.id.surfaceView);
         holder = mSurface.getHolder();
 
@@ -100,12 +100,16 @@ public class Remote_Front_Cam extends AppCompatActivity  {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
+
+            final ImageButton button0=(ImageButton)findViewById(R.id.settings);
             final ImageButton button1= (ImageButton) findViewById(R.id.refresh);
-            final ImageButton button3=(ImageButton)findViewById(R.id.cameraswitch);
+            final ImageButton button3=(ImageButton)findViewById(R.id.cameraswitch)
+                    ;
             final TextView textView=(TextView) findViewById(R.id.frontCam);
             final TextView textView1=(TextView) findViewById(R.id.etName_SL);
             final TextView textView2=(TextView) findViewById(R.id.clock);
 
+            button0.setVisibility(View.INVISIBLE);
             button1.setVisibility(View.INVISIBLE);
             button3.setVisibility(View.INVISIBLE);
             textView.setVisibility(View.INVISIBLE);
@@ -114,12 +118,14 @@ public class Remote_Front_Cam extends AppCompatActivity  {
             return true;
         }
         else if(event.getAction() == MotionEvent.ACTION_UP) {
+            final ImageButton button0= (ImageButton) findViewById(R.id.settings);
             final ImageButton button1= (ImageButton) findViewById(R.id.refresh);
             final ImageButton button3=(ImageButton)findViewById(R.id.cameraswitch);
             final TextView textView=(TextView) findViewById(R.id.frontCam);
             final TextView textView1=(TextView) findViewById(R.id.etName_SL);
             final TextView textView2=(TextView) findViewById(R.id.clock);
 
+            button0.setVisibility(View.VISIBLE);
             button1.setVisibility(View.VISIBLE);
             button3.setVisibility(View.VISIBLE);
             textView.setVisibility(View.VISIBLE);
