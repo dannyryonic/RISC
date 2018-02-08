@@ -55,8 +55,8 @@ public class Local_Front_Cam extends AppCompatActivity  {
         frontCam.setBackgroundColor(Color.parseColor("#50000000"));
 //retieve the text input from then IpPreferance class to the front_cam class
         SharedPreferences prefs= PreferenceManager.getDefaultSharedPreferences(this);
-        mFilePath = "rtsp://10.26.1.2";
-        // free rtssp stream 184.72.239.149/vod/mp4:BigBuckBunny_175k.mov");
+        //mFilePath = "rtsp://10.26.1.2";
+        mFilePath ="rtsp://184.72.239.149/vod/mp4:BigBuckBunny_175k.mov";
         //mFilePath ="rtsp://10.26.1.3:554/user=admin&password=&channel=1&stream=0.sdp";
 
 
@@ -147,6 +147,7 @@ public class Local_Front_Cam extends AppCompatActivity  {
     public void onBackPressed() {
         Intent intent = new Intent(this,MainActivity.class);
         startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
         System.exit(0);
     }
@@ -217,6 +218,8 @@ public class Local_Front_Cam extends AppCompatActivity  {
     public void buttonClick(View view) {
         Intent intent =new Intent(Local_Front_Cam.this,Local_Back_Cam.class);
         startActivity(intent);
+
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         System.exit(0);
     }
 

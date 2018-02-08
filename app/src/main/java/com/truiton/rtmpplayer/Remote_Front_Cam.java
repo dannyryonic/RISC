@@ -161,6 +161,7 @@ public void onBackPressed() {
     Intent intent = new Intent(this,MainActivity.class);
     startActivity(intent);
 
+    overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     System.exit(0);
 }
 
@@ -230,6 +231,8 @@ public void onBackPressed() {
     public void buttonClick(View view) {
         Intent intent =new Intent(Remote_Front_Cam.this,Remote_Back_Cam.class);
         startActivity(intent);
+
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         System.exit(0);
     }
 

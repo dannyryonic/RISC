@@ -148,6 +148,7 @@ public class Local_Back_Cam extends AppCompatActivity  {
         Intent intent = new Intent(this,Local_Front_Cam.class);
         startActivity(intent);
 
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
         System.exit(0);
     }
 
@@ -217,6 +218,8 @@ public class Local_Back_Cam extends AppCompatActivity  {
     public void buttonClick(View view) {
         Intent intent =new Intent(Local_Back_Cam.this,Local_Front_Cam.class);
         startActivity(intent);
+
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
         System.exit(0);
     }
 

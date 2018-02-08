@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     public void local_onlcik(View view) {
         Intent intent = new Intent(this,Local_Front_Cam.class);
         startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
 
     }
 

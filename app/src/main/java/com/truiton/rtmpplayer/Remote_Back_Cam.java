@@ -155,6 +155,7 @@ public class Remote_Back_Cam extends AppCompatActivity  {
         Intent intent = new Intent(this,Remote_Front_Cam.class);
         startActivity(intent);
 
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
         System.exit(0);
     }
 
@@ -224,6 +225,8 @@ public class Remote_Back_Cam extends AppCompatActivity  {
     public void buttonClick(View view) {
         Intent intent =new Intent(Remote_Back_Cam.this,Remote_Back_Cam.class);
         startActivity(intent);
+
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
         System.exit(0);
     }
 
