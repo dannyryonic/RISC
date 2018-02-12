@@ -1,13 +1,17 @@
 package com.truiton.rtmpplayer;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -45,7 +49,32 @@ public class Remote_Front_Cam extends AppCompatActivity  {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.front_cam);
-        wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+        ConnectivityManager mgr = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = mgr.getActiveNetworkInfo();
+
+        if (netInfo != null) {
+            if (netInfo.isConnected()) {
+
+            }else {
+                //No internet
+            }
+        } else {
+            AlertDialog.Builder alertDialog2 = new AlertDialog.Builder(this);
+            // Setting Dialog Title
+            alertDialog2.setTitle("NETWORK not available");
+            // Setting Dialog Message
+            alertDialog2.setMessage("Please ensure that you have internet connection on your device");
+            // Setting Icon to Dialog
+            alertDialog2.setIcon(R.drawable.nonetwork);
+            // Setting Positive "Yes" Btn
+            alertDialog2.setPositiveButton("OK",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+            alertDialog2.show();
+        }
 
         mName = (TextView) findViewById(R.id.etName_SL);
         frontCam=(TextView) findViewById(R.id.frontCam);
@@ -255,6 +284,14 @@ public void onBackPressed() {
         Ip_Dialog  ip_dialog= new Ip_Dialog();
         ip_dialog.show(getSupportFragmentManager(),"IP address ");
 
+    }
+
+    public void ref(View view) {
+
+        overridePendingTransition( 0, 0);
+        startActivity(getIntent());
+        overridePendingTransition( 0, 0);
+        System.exit(1);
     }
 
 

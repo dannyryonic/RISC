@@ -1,6 +1,7 @@
 package com.truiton.rtmpplayer;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -8,6 +9,7 @@ import android.net.Uri;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -64,7 +66,35 @@ public class Local_Back_Cam extends AppCompatActivity  {
         rtsp://184.72.239.149/vod/mp4:BigBuckBunny_175k.mov
         mSurface = (SurfaceView) findViewById(R.id.surfaceView);
         holder = mSurface.getHolder();
+        Intent intent = new Intent();
+        int WifiState = intent.getIntExtra(WifiManager.EXTRA_WIFI_STATE,WifiManager.WIFI_STATE_UNKNOWN);
+        if (WifiState == WifiManager.WIFI_STATE_ENABLED){
 
+            Toast.makeText(this,"",Toast.LENGTH_LONG).show();
+        }
+        else {
+            AlertDialog.Builder alertDialog2 = new AlertDialog.Builder(
+                    this);
+
+// Setting Dialog Title
+            alertDialog2.setTitle("WI-FI DISABLED");
+
+// Setting Dialog Message
+            alertDialog2.setMessage("Please ensure that your WI-FI is enabled and  Connected to RIS before streaming and refresh the App");
+
+
+
+// Setting Icon to Dialog
+            alertDialog2.setIcon(R.drawable.offline);
+// Setting Positive "Yes" Btn
+            alertDialog2.setPositiveButton("OK",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+            alertDialog2.show();
+        }
         Thread t = new Thread() {
             @Override
             public void run() {
@@ -156,11 +186,13 @@ public class Local_Back_Cam extends AppCompatActivity  {
         releasePlayer();
         try {
             if (media.length() > 0) {
-                Toast toast = Toast.makeText(this, media, Toast.LENGTH_LONG);
+                /*Toast toast = Toast.makeText(this, media, Toast.LENGTH_LONG);
                 toast.setGravity(Gravity.BOTTOM | Gravity.FILL_HORIZONTAL, 0,
                         0);
+                toast.show();*/
 
-                toast.show();
+                Toast.makeText(this, "streaming video....", Toast
+                        .LENGTH_LONG).show();
             }
 
             // Create LibVLC
@@ -190,7 +222,7 @@ public class Local_Back_Cam extends AppCompatActivity  {
             mMediaPlayer.setMedia(m);
             mMediaPlayer.play();
         } catch (Exception e) {
-            Toast.makeText(this, "Error in creating player!", Toast
+            Toast.makeText(this, "Error  Streaming , Please refresh or restart app", Toast
                     .LENGTH_LONG).show();
         }
     }
