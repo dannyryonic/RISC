@@ -58,7 +58,7 @@ public class Local_Front_Cam extends AppCompatActivity  {
 //retieve the text input from then IpPreferance class to the front_cam class
         SharedPreferences prefs= PreferenceManager.getDefaultSharedPreferences(this);
         //mFilePath = "rtsp://10.26.1.2";
-        mFilePath ="rtsp://184.72.239.149/vod/mp4:BigBuckBunny_175k.mov";
+        mFilePath ="rtsp://10.1.4.68:5554/Front-Camera.sdp";
         //mFilePath ="rtsp://10.26.1.3:554/user=admin&password=&channel=1&stream=0.sdp";
         Intent intent = new Intent();
         int WifiState = intent.getIntExtra(WifiManager.EXTRA_WIFI_STATE,WifiManager.WIFI_STATE_UNKNOWN);
@@ -66,18 +66,14 @@ public class Local_Front_Cam extends AppCompatActivity  {
 
             Toast.makeText(this,"",Toast.LENGTH_LONG).show();
         }
-        else {
+        else{
             AlertDialog.Builder alertDialog2 = new AlertDialog.Builder(
                     this);
 
 // Setting Dialog Title
             alertDialog2.setTitle("WI-FI DISABLED");
-
 // Setting Dialog Message
             alertDialog2.setMessage("Please ensure that your WI-FI is enabled and  Connected to RIS before streaming and refresh the App");
-
-
-
 // Setting Icon to Dialog
             alertDialog2.setIcon(R.drawable.offline);
 // Setting Positive "Yes" Btn
@@ -91,7 +87,7 @@ public class Local_Front_Cam extends AppCompatActivity  {
         }
 
 
-        rtsp://184.72.239.149/vod/mp4:BigBuckBunny_175k.mov
+        //rtsp://184.72.239.149/vod/mp4:BigBuckBunny_175k.mov
         mSurface = (SurfaceView) findViewById(R.id.surfaceView);
         holder = mSurface.getHolder();
 
@@ -199,6 +195,8 @@ public class Local_Front_Cam extends AppCompatActivity  {
             options.add("--no-skip-frames");
             options.add("--rtsp-tcp");
             options.add("--audio-time-stretch");
+            //options.add("--aout=opensles");
+
             options.add("-vvv");
             libvlc = new LibVLC(this, options);
             holder.setKeepScreenOn(true);
@@ -216,6 +214,7 @@ public class Local_Front_Cam extends AppCompatActivity  {
             m.setHWDecoderEnabled(true, false);
             m.addOption(":network-caching=300");
             m.addOption(":clock-jitter=0");
+            m.addOption(":sout = #transcode{vcodec=x264,vb=800,scale=0.25,acodec=none,fps=23}:display :no-sout-rtp-sap :no-sout-standard-sap :ttl=1 :sout-keep\"};");
             mMediaPlayer.setMedia(m);
             mMediaPlayer.play();
         } catch (Exception e) {
