@@ -34,8 +34,10 @@ public class Ip_Dialog extends AppCompatDialogFragment {
 
         mPreferences = PreferenceManager.getDefaultSharedPreferences(Ip_Dialog.this.getActivity());
         //mPreferences = getSharedPreferences("tabian.com.sharedpreferencestest", Context.MODE_PRIVATE);
-
         checkSharedPreferences();
+
+
+
         mEditor = mPreferences.edit();
         builder.setView(view)
                 .setTitle("Enter IP Address")
@@ -67,7 +69,7 @@ public class Ip_Dialog extends AppCompatDialogFragment {
      * Check the shared preferences and set them accordingly
      */
     private void checkSharedPreferences(){
-        String name = mPreferences.getString(getString(R.string.name), "");
+        String name = mPreferences.getString(getString(R.string.name), "41.160.117.215");
 
         mName.setText(name);
 

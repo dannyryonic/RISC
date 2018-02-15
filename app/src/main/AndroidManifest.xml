@@ -23,7 +23,7 @@
             android:label="@string/app_name"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".Remote_Back_Cam" />
+            android:name=".Remote_Back_Cam" 
             android:screenOrientation="landscape" />
         <activity
             android:name=".MainActivity"
