@@ -61,7 +61,7 @@ public class Local_Back_Cam extends AppCompatActivity  {
         // free rtssp stream 184.72.239.149/vod/mp4:BigBuckBunny_175k.mov");
         //mFilePath ="rtsp://10.26.1.3:554/user=admin&password=&channel=1&stream=0.sdp";
 
-        mFilePath ="rtsp://10.1.4.68:5554/Rear-Camera.sdp";
+        mFilePath ="rtsp://10.26.1.6:5554/Rear-Camera.sdp";
 
 
         rtsp://184.72.239.149/vod/mp4:BigBuckBunny_175k.mov

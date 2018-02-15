@@ -55,7 +55,7 @@ public class Remote_Back_Cam extends AppCompatActivity  {
         frontCam.setBackgroundColor(Color.parseColor("#50000000"));
 //retieve the text input from then IpPreferance class to the front_cam class
         SharedPreferences prefs= PreferenceManager.getDefaultSharedPreferences(this);
-        mFilePath = "rtsp://"+prefs.getString(getString(R.string.name), "")+":8090/back";
+        mFilePath = "rtsp://"+prefs.getString(getString(R.string.name), "")+":5554/Rear-Camera.sdp";
         // free rtssp stream 184.72.239.149/vod/mp4:BigBuckBunny_175k.mov");
 //pass the font IP address to the left of the screen
         mName = (TextView) findViewById(R.id.etName_SL);

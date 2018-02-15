@@ -58,7 +58,8 @@ public class Local_Front_Cam extends AppCompatActivity  {
 //retieve the text input from then IpPreferance class to the front_cam class
         SharedPreferences prefs= PreferenceManager.getDefaultSharedPreferences(this);
         //mFilePath = "rtsp://10.26.1.2";
-        mFilePath ="rtsp://10.1.4.68:5554/Front-Camera.sdp";
+       // mFilePath ="rtsp://10.1.4.68:5554/Front-Camera.sdp";
+        mFilePath ="rtsp://10.26.1.6:5554/Front-Camera.sdp";
         //mFilePath ="rtsp://10.26.1.3:554/user=admin&password=&channel=1&stream=0.sdp";
         Intent intent = new Intent();
         int WifiState = intent.getIntExtra(WifiManager.EXTRA_WIFI_STATE,WifiManager.WIFI_STATE_UNKNOWN);

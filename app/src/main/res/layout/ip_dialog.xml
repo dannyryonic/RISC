@@ -10,6 +10,6 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="75dp"
-        android:hint="Enter IP address " />
+        android:text="3939" />
 
 </RelativeLayout>
